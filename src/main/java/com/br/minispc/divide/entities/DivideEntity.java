@@ -1,7 +1,8 @@
-package com.br.minispc.domain.divide;
+package com.br.minispc.divide.entities;
 
-import com.br.minispc.domain.company.CompanyEntity;
-import com.br.minispc.domain.customer.CustomerEntity;
+import com.br.minispc.company.entities.CompanyEntity;
+import com.br.minispc.customer.entities.CustomerEntity;
+import com.br.minispc.divide.enuns.DivideStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "divides")
-public class DividesEntity {
+public class DivideEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,14 @@ public class DividesEntity {
     @Column
     Date dueDate;
 
-    @Column
-    String status;
+    @Enumerated()
+    DivideStatus status;
+
+    public DivideEntity(CustomerEntity customer, CompanyEntity company, BigDecimal amount, DivideStatus status, Date dueDate) {
+        this.customer = customer;
+        this.company = company;
+        this.amount = amount;
+        this.status = status;
+        this.dueDate = dueDate;
+    }
 }

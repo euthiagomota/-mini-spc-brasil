@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini SPC - Lista de Clientes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #003b5c; /* Azul para o corpo */
+            color: white; /* Texto branco */
+        }
+
+        .logo {
+            max-width: 120px; /* Tamanho da logo ajustado */
+            margin: 20px;
+        }
+
+        .navbar {
+            background-color: white; /* Nav branca */
+        }
+
+        .navbar-brand {
+            color: #007bff; /* Cor da logo na navbar */
+        }
+
+        .btn-primary {
+            background-color: #ffc107; /* Botões amarelos */
+            border-color: #ffc107;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800; /* Efeito hover para o botão */
+            border-color: #e0a800;
+        }
+
+        h2 {
+            color: white; /* Título em branco */
+        }
+
+        table th, table td {
+            color: white; /* Textos da tabela em branco */
+        }
+    </style>
+</head>
+<body>
+<!-- Barra de navegação -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/spc-brasil-logo.png" alt="SPC Brasil" width="100" style="margin-left: 30px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/customers/view" style="margin-left: 1rem;">Consultar Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers/register">Registrar Cliente</a> <!-- Novo botão -->
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Clientes Cadastrados</h2>
+
+    <form action="/customers/details" method="get" class="mb-3">
+        <input type="text" name="cpf" placeholder="Digite o CPF do Cliente" class="form-control w-50 d-inline">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF/CNPJ</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.cpf}"></td>
+            <td th:text="${customer.status}"></td>
+            <td>
+                <a th:href="@{/customers/details(cpf=${customer.cpf})}" class="btn btn-info btn-sm">Detalhes</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.br.minispc.domain.company;
+package com.br.minispc.company.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

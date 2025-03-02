@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente Criado</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Cliente Criado com Sucesso!</h2>
+
+    <p><strong>Nome:</strong> <span th:text="${customer.name}"></span></p>
+    <p><strong>CPF/CNPJ:</strong> <span th:text="${customer.cpf}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${customer.status}"></span></p>
+
+    <a href="/customers/view" class="btn btn-primary">Voltar para a Lista de Clientes</a>
+</div>
+</body>
+</html>
