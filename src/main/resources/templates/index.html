@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Mini SPC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body style="background-color: #003b5c;">
+<!-- Barra de Navegação -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffffff;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/spc-brasil-logo.png" alt="SPC Brasil" class="logo" style="max-width: 120px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/dashboard"style="color: #013d7d;">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customers"style="color: #013d7d;">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/companies"style="color: #013d7d;">Empresas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/debts" style="color: #013d7d;">Dívidas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Título -->
+<h2 class="text-center text-white mt-4">Painel de Controle</h2>
+
+<!-- Cards do Dashboard -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <a href="/customers/view" class="card text-white" style="background-color: #cda802; text-decoration: none;">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Clientes</h4>
+                    <p class="card-text">Gerencie seus clientes cadastrados</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/companies" class="card text-white" style="background-color: #28a745; text-decoration: none;">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Empresas</h4>
+                    <p class="card-text">Visualize e gerencie empresas</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/debts" class="card text-white" style="background-color: #dc3545; text-decoration: none;">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Dívidas</h4>
+                    <p class="card-text">Consulte dívidas e inadimplências</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

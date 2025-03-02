@@ -23,6 +23,9 @@ public class CompanyEntity {
     @Column()
     String email;
 
-    @Column()
-    String password;
+    public CompanyEntity(String cnpj, String social_reason, String email) {
+        this.cnpj = cnpj;
+        this.social_reason = social_reason;
+        this.email = email;
+    }
 }

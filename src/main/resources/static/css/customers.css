@@ -1,0 +1,38 @@
+  body {
+            background-color: #003b5c;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            max-width: 120px;
+            margin-left: 20px;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 1rem;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #013d7d !important;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
