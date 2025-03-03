@@ -1,6 +1,6 @@
 # Mini SPC
 
-**Mini SPC** é um sistema de gerenciamento de clientes, empresas e dívidas, desenvolvido com **Spring Boot** e **PostgreSQL**. O sistema adota boas práticas de desenvolvimento, utilizando ferramentas modernas e seguindo os princípios SOLID para garantir escalabilidade e manutenção eficiente. 
+**Mini SPC** é um sistema de gerenciamento de **clientes**, **empresas** e **dívidas**, desenvolvido com **Spring Boot** e **PostgreSQL**. O sistema adota boas práticas de desenvolvimento, utilizando ferramentas modernas e seguindo os princípios **SOLID**, garantindo escalabilidade e manutenção eficiente.
 
 ## Tecnologias
 
@@ -21,10 +21,35 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 O sistema **Mini SPC** oferece as seguintes funcionalidades principais:
 
 - **Gerenciamento de Clientes**: Cadastro, atualização, exclusão e consulta de clientes.
-- **Gerenciamento de Empresas**: Cadastro, atualização, exclusão e consulta de empresas.
-- **Gerenciamento de Dívidas**: Cadastro, atualização, exclusão e consulta de dívidas associadas a clientes e empresas.
+- **Gerenciamento de Empresas**: Cadastro e consulta de empresas.
+- **Gerenciamento de Dívidas**: Cadastro e consulta de dívidas associadas a clientes e empresas.
 - **Paginação e Busca**: Implementação de paginação nas listagens de clientes e dívidas, além de filtros para facilitar a busca.
-- **Autenticação e Autorização**: Controle de acesso a funcionalidades restritas, com base em roles de usuários.
+
+## Endpoints da API
+
+### **Customers (Clientes)**
+
+| Método | Rota                                | Descrição                                   |
+|--------|-------------------------------------|---------------------------------------------|
+| GET    | `/customers/view`                   | Listar todos os clientes                   |
+| POST   | `/customers/created`                | Criar um novo cliente                      |
+| GET    | `/customers/details?cpf={cpf}`      | Obter os detalhes de um cliente específico |
+| PATCH  | `/customers/update/{customerId}`    | Atualizar os dados de um cliente específico|
+| DELETE | `/customers/delete/{customerId}`    | Excluir um cliente específico              |
+
+### **Companies (Empresas)**
+
+| Método | Rota                                | Descrição                                   |
+|--------|-------------------------------------|---------------------------------------------|
+| POST   | `/companies/register`               | Criar uma nova empresa                     |
+| GET    | `/companies`                        | Obter todas as empresas                    |
+
+### **Debts (Dívidas)**
+
+| Método | Rota                                | Descrição                                   |
+|--------|-------------------------------------|---------------------------------------------|
+| POST   | `/debts/{customerId}/create`        | Criar uma nova dívida para um cliente      |
+| GET    | `/debts/list`                       | Listar todas as dívidas                   |
 
 ## Instalação
 
@@ -70,9 +95,42 @@ Após configurar o banco de dados e garantir que todas as dependências estejam 
 
    ```bash
    cd /caminho/para/o/projeto
-     ```
+   ```
 
-#### Documentação Swagger
+### Documentação Swagger
+
+A documentação da API é gerada automaticamente pelo **Swagger**. Acesse a interface interativa para visualizar todos os endpoints, suas descrições e realizar testes diretamente na aplicação.
+
+![Swagger Documentation](./images/swagger.png)
+
+---
+
+## Algumas Evidências
+
+### Tela Dashboard
+
+Esta é a tela principal do sistema, onde você pode ver uma visão geral das operações do **Mini SPC**, como clientes, empresas e dívidas.
+
+![Dashboard](./images/dashboard.png)
+
+### Tela de Listagem de Clientes
+
+Aqui você pode visualizar todos os clientes cadastrados no sistema, com implementação da paginação, com a opção de editar, ver detalhes ou excluir cada um deles.
+
+![Listagem de Clientes](./images/customers.png)
+
+### Tela de Detalhes do Cliente
+
+A tela de detalhes do cliente exibe todas as informações relacionadas a um cliente específico, permitindo uma visualização completa de seus dados.
+
+![Detalhes do Cliente](./images/detalhes.png)
+
+### Tela de Criação de Dívida
+
+Esta tela permite a criação de novas dívidas para clientes ou empresas. Nela, você pode inserir os dados necessários para registrar uma nova dívida no sistema.
+
+![Criação de Dívida](./images/divida.png)
+
 
 
 
