@@ -6,6 +6,7 @@ import com.br.minispc.customer.repositories.CustomerRepository;
 import com.br.minispc.debit.entities.DebitEntity;
 import com.br.minispc.debit.repositories.DebitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,10 @@ public class CustomerService {
         return this.customerRepository.save(customer);
     }
 
-    public List<CustomerEntity> findAll(Pageable pageable) {
-        return customerRepository.findAll(pageable).getContent();
+    public Page<CustomerEntity> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable);
     }
+
 
     public Optional<CustomerEntity> findCustomer(String cpf) {
         Optional<CustomerEntity> customer = this.customerRepository.findByCpf(cpf);

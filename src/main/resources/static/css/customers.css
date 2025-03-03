@@ -1,4 +1,4 @@
-  body {
+ body {
             background-color: #003b5c;
             color: white;
             font-family: Arial, sans-serif;
@@ -6,16 +6,14 @@
 
         .logo {
             max-width: 120px;
-
         }
 
-       .navbar {
+        .navbar {
             background-color: #ffffff;
             padding: 1rem;
         }
 
-        .navbar-brand,
-        .nav-link {
+        .navbar-brand, .nav-link {
             color: #013d7d !important;
             font-weight: bold;
         }
@@ -32,9 +30,7 @@
         }
 
         .btn-generic:hover {
-            background-color: #003b5c;
-            border-color: #003b5c;
-            font-weight: bold;
+            background-color: #002b46;
             color: white;
         }
 
@@ -46,7 +42,6 @@
 
         .btn-primary:hover {
             background-color: #e0a800;
-            border-color: #e0a800;
         }
 
         .btn-secundary {
@@ -54,12 +49,10 @@
             border-color: #00a02b;
             font-weight: bold;
             color: white;
-            padding: 0px, 5px;
         }
 
         .btn-secundary:hover {
             background-color: #01a417;
-            border-color: #01a417;
         }
 
         h2 {
@@ -68,12 +61,47 @@
             margin-top: 20px;
         }
 
-         .footer {
-                    background-color: #003b5c;
-                    color: white;
-                    text-align: center;
-                    padding: 15px 0;
-                    position: fixed;
-                    width: 100%;
-                    bottom: 0;
-                }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .page-item {
+            margin: 0 5px;
+        }
+
+        .page-link {
+            border: none;
+            padding: 8px 12px;
+            color: #007bff;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .page-item.active .page-link {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .page-item.disabled .page-link {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .footer {
+            background-color: #003b5c;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 90%;
+            bottom: 0;
+        }

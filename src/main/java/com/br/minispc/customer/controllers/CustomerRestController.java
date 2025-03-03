@@ -5,6 +5,7 @@ import com.br.minispc.customer.dto.RequestCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -37,8 +38,8 @@ public class CustomerRestController {
             @RequestParam(defaultValue = "id,asc") String[] sort
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort[0]).ascending());
-        List<CustomerEntity> customers = customerService.findAll(pageable);
-        return ResponseEntity.ok(customers);
+        Page<CustomerEntity> customers = customerService.findAll(pageable);
+        return ResponseEntity.ok(customers.getContent());
     }
 
     @GetMapping("/find/{cpf}")

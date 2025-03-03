@@ -16,11 +16,10 @@
 
         .logo {
             max-width: 120px;
-            margin-left: 20px;
         }
 
         .navbar {
-            background-color: white;
+            background-color: #ffffff;
             padding: 1rem;
         }
 
@@ -28,6 +27,10 @@
         .nav-link {
             color: #013d7d !important;
             font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #28a745 !important;
         }
 
         .btn-primary {
@@ -62,28 +65,37 @@
         label {
             font-weight: bold;
         }
+
+         .footer {
+            background-color: #003b5c;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 </head>
 
 <body>
 <!-- Barra de Navegação -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-        <img src="/spc-brasil-logo.png" alt="SPC Brasil" class="logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/customers/view">Consultar Clientes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/customers/register">Registrar Cliente</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffffff;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/spc-brasil-logo.png" alt="SPC Brasil" class="logo" style="max-width: 120px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/dashboard" style="color: #013d7d;">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customers" style="color: #013d7d;">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/companies" style="color: #013d7d;">Empresas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/debts" style="color: #013d7d;">Dívidas</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -113,6 +125,12 @@
         </div>
     </form>
 </div>
+
+<!-- Rodapé -->
+<div class="footer">
+    <p>&copy; 2025 Mini SPC. Todos os direitos reservados.</p>
+</div>
+
 
 <script>
     // Máscara de CPF
