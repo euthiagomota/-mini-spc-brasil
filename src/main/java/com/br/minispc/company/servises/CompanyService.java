@@ -6,6 +6,8 @@ import com.br.minispc.company.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
 
@@ -19,5 +21,9 @@ public class CompanyService {
                 requestCompanyDto.email()
         );
         return this.companyRepository.save(company);
+    }
+
+    public List<CompanyEntity> findAll() {
+        return this.companyRepository.findAll();
     }
 }

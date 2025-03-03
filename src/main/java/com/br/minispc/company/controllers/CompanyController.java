@@ -6,10 +6,9 @@ import com.br.minispc.company.servises.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/companies")
@@ -23,5 +22,11 @@ public class CompanyController {
             @RequestBody RequestCompanyDto requestCompanyDto) {
         CompanyEntity company = this.companyService.registerCompany(requestCompanyDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(company);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CompanyEntity>> findAll() {
+        List<CompanyEntity> companies = this.companyService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(companies);
     }
 }

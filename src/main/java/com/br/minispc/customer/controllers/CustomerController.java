@@ -4,12 +4,12 @@ import com.br.minispc.customer.dto.RequestCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
 import com.br.minispc.customer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/customers")
@@ -27,12 +27,11 @@ public class CustomerController {
 
     @GetMapping("/details")
     public String findCustomerByCpf(@RequestParam String cpf, Model model) {
-        Optional<CustomerEntity> customer = this.customerService.findCustomer(cpf);
-        if (customer.isPresent()) {
-            model.addAttribute("customer", customer.get());
-        } else {
-            model.addAttribute("error", "Cliente não encontrado.");
-        }
+        CustomerEntity customer = this.customerService.findCustomerAllData(cpf)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+
+            model.addAttribute("customer", customer);
+
         return "customerDetails";
     }
 

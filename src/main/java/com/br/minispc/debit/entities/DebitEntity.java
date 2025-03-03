@@ -1,20 +1,21 @@
-package com.br.minispc.divide.entities;
+package com.br.minispc.debit.entities;
 
 import com.br.minispc.company.entities.CompanyEntity;
 import com.br.minispc.customer.entities.CustomerEntity;
-import com.br.minispc.divide.enuns.DivideStatus;
+import com.br.minispc.debit.enuns.DebitStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "divides")
-public class DivideEntity {
+@Entity(name = "debts")
+public class DebitEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +33,12 @@ public class DivideEntity {
     BigDecimal amount;
 
     @Column
-    Date dueDate;
+    LocalDate dueDate;
 
-    @Enumerated()
-    DivideStatus status;
+    @Enumerated(EnumType.STRING)
+    DebitStatus status;
 
-    public DivideEntity(CustomerEntity customer, CompanyEntity company, BigDecimal amount, DivideStatus status, Date dueDate) {
+    public DebitEntity(CustomerEntity customer, CompanyEntity company, BigDecimal amount, DebitStatus status, LocalDate dueDate) {
         this.customer = customer;
         this.company = company;
         this.amount = amount;

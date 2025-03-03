@@ -6,11 +6,11 @@
 
         .logo {
             max-width: 120px;
-            margin-left: 20px;
+
         }
 
-        .navbar {
-            background-color: white;
+       .navbar {
+            background-color: #ffffff;
             padding: 1rem;
         }
 
@@ -18,6 +18,24 @@
         .nav-link {
             color: #013d7d !important;
             font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #28a745 !important;
+        }
+
+        .btn-generic {
+            background-color: #003b5c;
+            border-color: #003b5c;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-generic:hover {
+            background-color: #003b5c;
+            border-color: #003b5c;
+            font-weight: bold;
+            color: white;
         }
 
         .btn-primary {
@@ -31,8 +49,31 @@
             border-color: #e0a800;
         }
 
+        .btn-secundary {
+            background-color: #01c61c;
+            border-color: #00a02b;
+            font-weight: bold;
+            color: white;
+            padding: 0px, 5px;
+        }
+
+        .btn-secundary:hover {
+            background-color: #01a417;
+            border-color: #01a417;
+        }
+
         h2 {
             text-align: center;
             margin-bottom: 20px;
             margin-top: 20px;
         }
+
+         .footer {
+                    background-color: #003b5c;
+                    color: white;
+                    text-align: center;
+                    padding: 15px 0;
+                    position: fixed;
+                    width: 100%;
+                    bottom: 0;
+                }

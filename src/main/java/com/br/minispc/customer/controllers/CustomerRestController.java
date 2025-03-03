@@ -3,6 +3,7 @@ package com.br.minispc.customer.controllers;
 import com.br.minispc.customer.services.CustomerService;
 import com.br.minispc.customer.dto.RequestCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,8 @@ public class CustomerRestController {
     CustomerService customerService;
 
     @PostMapping("/register")
-    public ResponseEntity<CustomerEntity> registerCustomer(@RequestBody RequestCustomerDto requestCustomerDto) {
+    public ResponseEntity<CustomerEntity> registerCustomer(
+            @Valid @RequestBody RequestCustomerDto requestCustomerDto) {
         CustomerEntity customer = this.customerService.registerCustomer(requestCustomerDto);
         System.out.println("Valor do customer: " + customer);
         return ResponseEntity.status(201).body(customer);
