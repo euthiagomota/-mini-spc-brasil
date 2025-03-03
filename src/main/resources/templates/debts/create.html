@@ -124,7 +124,7 @@ input[type="date"] {
 <div class="container mt-4">
     <h2 class="mb-4 text-center">Gerar Nova Dívida</h2>
 
-    <form th:action="@{/debits/{customerId}/create(customerId=${customerId})}" method="post">
+    <form th:action="@{/debts/{customerId}/create(customerId=${customerId})}" method="post">
         <div class="mb-3">
             <label for="companyCnpj" class="form-label">CNPJ da Empresa</label>
             <input type="text" id="companyCnpj" name="companyCnpj" class="form-control" required>

@@ -1,12 +1,13 @@
-package com.br.minispc.debit.entities;
+package com.br.minispc.debt.entities;
 
 import com.br.minispc.company.entities.CompanyEntity;
 import com.br.minispc.customer.entities.CustomerEntity;
-import com.br.minispc.debit.enuns.DebitStatus;
+import com.br.minispc.debt.enuns.DebtStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "debts")
-public class DebitEntity {
+public class DebtEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +36,9 @@ public class DebitEntity {
     LocalDate dueDate;
 
     @Enumerated(EnumType.STRING)
-    DebitStatus status;
+    DebtStatus status;
 
-    public DebitEntity(CustomerEntity customer, CompanyEntity company, BigDecimal amount, DebitStatus status, LocalDate dueDate) {
+    public DebtEntity(CustomerEntity customer, CompanyEntity company, BigDecimal amount, DebtStatus status, LocalDate dueDate) {
         this.customer = customer;
         this.company = company;
         this.amount = amount;

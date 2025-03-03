@@ -48,4 +48,11 @@ public class CustomerRestController {
 
         return ResponseEntity.status(HttpStatus.OK).body(customer);
     }
+
+    @DeleteMapping("/delete/{customerId}")
+    public ResponseEntity<Boolean> deleteCustomer(@PathVariable Long customerId) {
+        Boolean customerDeleted = this.customerService.deleteCustomer(customerId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(customerDeleted);
+    }
 }

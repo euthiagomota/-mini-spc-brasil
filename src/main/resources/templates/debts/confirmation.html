@@ -8,14 +8,14 @@
     <style>
         /* Cores do SPC Brasil */
         :root {
-            --spc-blue: #003366;
+            --spc-blue: #003b5c;
             --spc-yellow: #FFD100;
             --spc-light-gray: #f8f9fa;
         }
 
         /* Estilo geral */
         body {
-            background-color: #003366;
+            background-color: #003b5c;
         }
 
         /* Navbar */
@@ -34,6 +34,17 @@
             color: #28a745 !important;
         }
 
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+        }
+
         /* Container principal */
         .container {
             max-width: 600px;
@@ -41,7 +52,7 @@
 
         /* Título */
         h2 {
-            color: var(--spc-blue);
+            color: white;
             font-weight: bold;
         }
 
@@ -53,13 +64,7 @@
         }
 
         .card-title {
-            color: var(--spc-blue);
-            font-weight: bold;
-        }
-
-        /* Botões */
-        .btn-primary {
-            background-color: var(--spc-yellow);
+            text-align: center;
             color: var(--spc-blue);
             font-weight: bold;
         }
@@ -72,10 +77,13 @@
 
         /* Rodapé */
         .footer {
-            background-color: var(--spc-blue);
+            background-color: #003b5c;
             color: white;
-            padding: 10px 0;
-            font-size: 14px;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
@@ -108,19 +116,19 @@
     <div class="card mt-4">
         <div class="card-body">
             <h5 class="card-title">Detalhes da Dívida</h5>
-            <p><strong>Cliente:</strong> <span th:text="${debit.customer.name}"></span></p>
-            <p><strong>CPF/CNPJ:</strong> <span th:text="${debit.customer.cpf}"></span></p>
-            <p><strong>Empresa:</strong> <span th:text="${debit.company.social_reason}"></span></p>
-            <p><strong>CNPJ:</strong> <span th:text="${debit.company.cnpj}"></span></p>
-            <p><strong>Valor:</strong> R$ <span th:text="${#numbers.formatDecimal(debit.amount, 1, 2)}"></span></p>
-            <p><strong>Data de Vencimento:</strong> <span th:text="${debit.dueDate}"></span></p>
-            <p><strong>Status:</strong> <span th:text="${debit.status}"></span></p>
+            <p><strong>Cliente:</strong> <span th:text="${debt.customer.name}"></span></p>
+            <p><strong>CPF/CNPJ:</strong> <span th:text="${debt.customer.cpf}"></span></p>
+            <p><strong>Empresa:</strong> <span th:text="${debt.company.social_reason}"></span></p>
+            <p><strong>CNPJ:</strong> <span th:text="${debt.company.cnpj}"></span></p>
+            <p><strong>Valor:</strong> R$ <span th:text="${#numbers.formatDecimal(debt.amount, 1, 2)}"></span></p>
+            <p><strong>Data de Vencimento:</strong> <span th:text="${debt.dueDate}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${debt.status}"></span></p>
         </div>
     </div>
 
     <div class="text-center mt-4">
-        <a href="/debits/list" class="btn btn-primary">Ver todas as Dívidas</a>
-        <a href="/" class="btn btn-secondary">Voltar ao Início</a>
+        <!-- <a href="/debits/list" class="btn btn-primary">Ver todas as Dívidas</a> -->
+        <a href="/" class="btn btn-primary">Voltar ao Início</a>
     </div>
 </div>
 

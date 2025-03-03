@@ -1,6 +1,7 @@
 package com.br.minispc.customer.controllers;
 
 import com.br.minispc.customer.dto.RequestCustomerDto;
+import com.br.minispc.customer.dto.UpdateCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
 import com.br.minispc.customer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/customers")
@@ -59,6 +61,44 @@ public class CustomerController {
     @PostMapping("/created")
     public String createCustomer(@ModelAttribute RequestCustomerDto requestCustomerDto) {
         customerService.registerCustomer(requestCustomerDto);
+        return "redirect:/customers/view";
+    }
+
+    @GetMapping("/delete/{customerId}")
+    public String deleteCustomer(@PathVariable Long customerId, RedirectAttributes redirectAttributes) {
+        try {
+            customerService.deleteCustomer(customerId);
+            redirectAttributes.addFlashAttribute("successMessage", "Cliente removido com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao remover o cliente!");
+        }
+        return "redirect:/customers/view";
+    }
+
+    @GetMapping("/update/{customerId}")
+    public String showUpdateCustomerPage(@PathVariable Long customerId, Model model) {
+        try {
+            CustomerEntity customer = customerService.findById(customerId);
+            model.addAttribute("customer", customer);
+            return "customerUpdate"; // Nome do template Thymeleaf
+        } catch (ResponseStatusException e) {
+            return "redirect:/customers/view"; // Redireciona caso o cliente não seja encontrado
+        }
+    }
+
+    @PatchMapping("/update/{customerId}")
+    public String updateCustomer(
+            @PathVariable Long customerId,
+            @ModelAttribute UpdateCustomerDto updateCustomerDto,
+            RedirectAttributes redirectAttributes) {
+        try {
+            customerService.updateCustomer(customerId, updateCustomerDto);
+            redirectAttributes.addFlashAttribute("successMessage", "Cliente atualizado com sucesso!");
+        } catch (ResponseStatusException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro: Cliente não encontrado!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao atualizar o cliente!");
+        }
         return "redirect:/customers/view";
     }
 

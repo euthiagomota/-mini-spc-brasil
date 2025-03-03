@@ -1,10 +1,12 @@
 package com.br.minispc.customer.services;
 
 import com.br.minispc.customer.dto.RequestCustomerDto;
+import com.br.minispc.customer.dto.UpdateCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
 import com.br.minispc.customer.repositories.CustomerRepository;
-import com.br.minispc.debit.entities.DebitEntity;
-import com.br.minispc.debit.repositories.DebitRepository;
+import com.br.minispc.debt.entities.DebtEntity;
+import com.br.minispc.debt.repositories.DebtRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +24,7 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     @Autowired
-    DebitRepository debitRepository;
+    DebtRepository debtRepository;
 
     public CustomerEntity registerCustomer(RequestCustomerDto requestCustomerDto) {
         CustomerEntity customer = new CustomerEntity(
@@ -49,6 +51,7 @@ public class CustomerService {
     }
 
     public List<CustomerEntity> listAll() {
+
         return customerRepository.findAll();
     }
 
@@ -58,10 +61,10 @@ public class CustomerService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found.");
         }
         var customer = optionalCustomer.get();
-        List<DebitEntity> debits = this.debitRepository.findByCustomerId(customer.getId());
+        List<DebtEntity> debits = this.debtRepository.findByCustomerId(customer.getId());
 
         BigDecimal totalDebt = BigDecimal.ZERO;
-        for (DebitEntity debit : debits) {
+        for (DebtEntity debit : debits) {
             totalDebt = totalDebt.add(debit.getAmount());
         }
         customer.setTotalDebt(totalDebt);
@@ -69,17 +72,39 @@ public class CustomerService {
         return Optional.of(customer);
     }
 
-    public String delete(Long customerId) {
-        Optional<CustomerEntity> optionalCustomer = this.customerRepository.findById(customerId);
+    public CustomerEntity findById(Long customerId) {
+        return customerRepository.findById(customerId).orElse(null);
+    }
 
-        if (optionalCustomer.isEmpty()) {
+    @Transactional
+    public Boolean deleteCustomer(Long id) {
+        if (!customerRepository.existsById(id)) {
+            return false;
+        }
+        debtRepository.deleteByCustomerId(id);
+        customerRepository.deleteById(id);
+
+        return true;
+    }
+
+    @Transactional
+    public void updateCustomer(Long customerId, UpdateCustomerDto dto) {
+        Optional<CustomerEntity> existingCustomerOpt = customerRepository.findById(customerId);
+
+        if (existingCustomerOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found.");
         }
-        var customer = optionalCustomer.get();
 
-        this.customerRepository.delete(customer);
+        CustomerEntity existingCustomer = existingCustomerOpt.get();
 
-        return "The customer was deleted successful";
+        // Atualiza apenas os campos não nulos
+        if (dto.name() != null) existingCustomer.setName(dto.name());
+        if (dto.email() != null) existingCustomer.setEmail(dto.email());
+        if (dto.address() != null) existingCustomer.setAddress(dto.address());
+
+        // Salva no banco
+        customerRepository.save(existingCustomer);
+
     }
 
 }

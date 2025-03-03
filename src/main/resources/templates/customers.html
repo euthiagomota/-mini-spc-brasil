@@ -59,13 +59,17 @@
                     <a th:href="@{/customers/details(cpf=${customer.cpf})}" class="btn btn-generic">
                         <i class="bi bi-info-circle"></i>
                     </a>
-                    <a th:href="@{/customers/delete/{customerId}(customerId=${customer.id})}" class="btn btn-danger">
+
+                    <a th:href="@{/customers/delete/{customerId}(customerId=${customer.id})}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Tem certeza que deseja deletar este usuário?');">
                         <i class="bi bi-trash"></i>
                     </a>
+
                     <a th:href="@{/customers/update/{customerId}(customerId=${customer.id})}" class="btn btn-warning">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <a th:href="@{/debits/create/{customerId}(customerId=${customer.id})}" class="btn btn-generic">
+                    <a th:href="@{/debts/create/{customerId}(customerId=${customer.id})}" class="btn btn-generic">
                         <i class="bi bi-plus-circle"></i> Dívida
                     </a>
                 </td>
