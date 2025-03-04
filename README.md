@@ -101,7 +101,7 @@ Após configurar o banco de dados e garantir que todas as dependências estejam 
 
 A documentação da API é gerada automaticamente pelo **Swagger**. Acesse a interface interativa para visualizar todos os endpoints, suas descrições e realizar testes diretamente na aplicação.
 
-![Swagger Documentation](./images/swagger.png)
+<img src="./images/swagger.png" width="600" />
 
 ---
 
@@ -111,25 +111,26 @@ A documentação da API é gerada automaticamente pelo **Swagger**. Acesse a int
 
 Esta é a tela principal do sistema, onde você pode ver uma visão geral das operações do **Mini SPC**, como clientes, empresas e dívidas.
 
-![Dashboard](./images/dashboard.png)
+<img src="./images/dashboard.png" width="600" />
 
 ### Tela de Listagem de Clientes
 
 Aqui você pode visualizar todos os clientes cadastrados no sistema, com implementação da paginação, com a opção de editar, ver detalhes ou excluir cada um deles.
 
-![Listagem de Clientes](./images/customers.png)
+<img src="./images/customers.png" width="600" />
 
 ### Tela de Detalhes do Cliente
 
 A tela de detalhes do cliente exibe todas as informações relacionadas a um cliente específico, permitindo uma visualização completa de seus dados.
 
-![Detalhes do Cliente](./images/detalhes.png)
+<img src="./images/detalhes.png" width="600" />
 
 ### Tela de Criação de Dívida
 
 Esta tela permite a criação de novas dívidas para clientes ou empresas. Nela, você pode inserir os dados necessários para registrar uma nova dívida no sistema.
 
-![Criação de Dívida](./images/divida.png)
+<img src="./images/divida.png" width="600" />
+
 
 
 
