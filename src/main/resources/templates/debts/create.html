@@ -113,7 +113,7 @@ input[type="date"] {
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="/dashboard" style="color: #013d7d;">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="/customers/view" style="color: #013d7d;">Clientes</a></li>
-                <li class="nav-item"><a class="nav-link" href="/companies" style="color: #013d7d;">Empresas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/companies" style="color: #013d7d;">Associados</a></li>
                 <li class="nav-item"><a class="nav-link" href="/debts" style="color: #013d7d;">Dívidas</a></li>
             </ul>
         </div>
@@ -126,7 +126,7 @@ input[type="date"] {
 
     <form th:action="@{/debts/{customerId}/create(customerId=${customerId})}" method="post">
         <div class="mb-3">
-            <label for="companyCnpj" class="form-label">CNPJ da Empresa</label>
+            <label for="companyCnpj" class="form-label">CNPJ do Associado</label>
             <input type="text" id="companyCnpj" name="companyCnpj" class="form-control" required>
         </div>
 

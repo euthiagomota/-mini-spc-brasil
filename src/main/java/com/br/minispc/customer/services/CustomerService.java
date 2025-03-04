@@ -27,6 +27,17 @@ public class CustomerService {
     DebtRepository debtRepository;
 
     public CustomerEntity registerCustomer(RequestCustomerDto requestCustomerDto) {
+
+        if (this.customerRepository.findByCpf(requestCustomerDto.cpf()).isPresent()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Customer already exists with this CPF.");
+        }
+
+        if (this.customerRepository.findByEmail(requestCustomerDto.email()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Customer already exists with this email.");
+        }
+
         CustomerEntity customer = new CustomerEntity(
                 requestCustomerDto.cpf(),
                 requestCustomerDto.address(),
@@ -50,11 +61,6 @@ public class CustomerService {
         return customer;
     }
 
-    public List<CustomerEntity> listAll() {
-
-        return customerRepository.findAll();
-    }
-
     public Optional<CustomerEntity> findCustomerAllData(String cpf) {
         Optional<CustomerEntity> optionalCustomer = this.customerRepository.findByCpf(cpf);
         if (optionalCustomer.isEmpty()) {
@@ -64,9 +70,11 @@ public class CustomerService {
         List<DebtEntity> debits = this.debtRepository.findByCustomerId(customer.getId());
 
         BigDecimal totalDebt = BigDecimal.ZERO;
+
         for (DebtEntity debit : debits) {
             totalDebt = totalDebt.add(debit.getAmount());
         }
+
         customer.setTotalDebt(totalDebt);
 
         return Optional.of(customer);
@@ -97,12 +105,10 @@ public class CustomerService {
 
         CustomerEntity existingCustomer = existingCustomerOpt.get();
 
-        // Atualiza apenas os campos não nulos
         if (dto.name() != null) existingCustomer.setName(dto.name());
         if (dto.email() != null) existingCustomer.setEmail(dto.email());
         if (dto.address() != null) existingCustomer.setAddress(dto.address());
 
-        // Salva no banco
         customerRepository.save(existingCustomer);
 
     }

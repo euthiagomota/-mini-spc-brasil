@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
     Optional<CustomerEntity> findByCpf(String cpf);
+
+    Optional<CustomerEntity> findByEmail(String email);
 }

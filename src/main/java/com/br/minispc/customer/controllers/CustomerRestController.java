@@ -1,5 +1,6 @@
 package com.br.minispc.customer.controllers;
 
+import com.br.minispc.customer.dto.UpdateCustomerDto;
 import com.br.minispc.customer.services.CustomerService;
 import com.br.minispc.customer.dto.RequestCustomerDto;
 import com.br.minispc.customer.entities.CustomerEntity;
@@ -31,7 +32,7 @@ public class CustomerRestController {
         return ResponseEntity.status(201).body(customer);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/list")
     public ResponseEntity<List<CustomerEntity>> listAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -54,5 +55,15 @@ public class CustomerRestController {
         Boolean customerDeleted = this.customerService.deleteCustomer(customerId);
 
         return ResponseEntity.status(HttpStatus.OK).body(customerDeleted);
+    }
+
+    @PatchMapping("/update/{customerId}")
+    public ResponseEntity<Boolean> updateCustomer(
+            @PathVariable Long customerId,
+            @RequestBody UpdateCustomerDto dto
+            ) {
+        this.customerService.updateCustomer(customerId, dto);
+
+        return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 }
